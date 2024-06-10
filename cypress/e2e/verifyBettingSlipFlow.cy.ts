@@ -59,10 +59,8 @@ describe('Verify Betting Slip', () => {
         cy.wait(500);
         cy.get('@marketOdd').then((marketOdd) => {
             let expectedWinning = (marketOdd * stake).toFixed(2);
-            cy.log('expected winning' + expectedWinning.toString());
             sportsPage.possiblePayout().should('be.visible').invoke('text').then((text) => {
                 const possiblePayout = parseFloat(text.trim()).toFixed(2);
-                cy.log('possible payout' + possiblePayout.toString());
                 expect(possiblePayout).to.be.eq(expectedWinning);
             })
         })
